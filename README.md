@@ -1,6 +1,5 @@
-# gamesPOC
 ## Rotas para user, game, vote
-### o CRUD está implementado na Rota vote
+### o CRUD completo está implementado na Rota vote
 
 # Rota USER
 ## POST: /user
