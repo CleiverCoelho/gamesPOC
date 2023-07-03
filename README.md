@@ -22,3 +22,5 @@
 ### Body: { "reason": "clubismo", "voteId": 1 }
 #### Unica justificativa para deletar um voto é clubismo
 #### voce pode desconfiar de clubismo se a descricao de um jogo estiver "manipulada"
+
+###### (Não há verificação de manipulação de descricoes ou não. Contamos com a boa fé dos usuarios hehe)
