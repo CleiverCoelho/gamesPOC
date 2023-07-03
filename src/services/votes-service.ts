@@ -15,11 +15,22 @@ async function createVote(userId:number, gameId:number) {
   return result;
 }
 
+async function deleteVote(reason: string, voteId: number) {
+  // Regra de negócio: unica justificativa para excluir um voto
+  // é clubismo (literalmente), em getVotes voce consegue as informacoes do id do voto
+  // e quem votou para alegar se foi clubismo ou não
+  // use esses poderes com responsabilidade
+  if((reason).toLowerCase() !== "clubismo") return {error: true}
+  const result = await voteRepository.deleteVote(voteId);
+  return result;
+}
+
 
 const voteService = {
   getVotes,
   getRanking,
-  createVote
+  createVote,
+  deleteVote
 }
 
 export default voteService;

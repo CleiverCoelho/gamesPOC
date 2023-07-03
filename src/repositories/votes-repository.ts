@@ -1,12 +1,12 @@
-import { Ranking, Vote } from "../protocols/index";
+import { DeleteVote, Ranking, Vote } from "../protocols/index";
 import { db } from "../database/database";
 import { createVoteType } from "../protocols/index";
 
 async function getVotes() {
   const query = `
-    SELECT * FROM vote
-    JOIN games ON games.id=vote."gameVote".id
-    JOIN users ON users.id=vote."userName".id`;
+    SELECT users.name, games.title AS "gameVote", vote.id as voteId FROM vote
+    JOIN games ON games.id=vote."gameVote"
+    JOIN users ON users.id=vote."userName"`;
   const result = await db.query<Vote>(query);
 
   return result.rows
@@ -32,11 +32,18 @@ function createVote(userId: number, gameId: number) {
   `, [userId, gameId]);
 }
 
+function deleteVote(voteId: number) {
+  return db.query<DeleteVote>(`
+    DELETE FROM vote WHERE id=$1;
+  `, [voteId]);
+}
+
 
 const voteRepository = {
   getVotes,
   createVote,
-  getRanking
+  getRanking,
+  deleteVote
 }
 
 export default voteRepository;

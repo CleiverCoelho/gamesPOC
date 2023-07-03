@@ -1,7 +1,7 @@
 import httpStatus from "http-status";
 import { Request, Response } from "express";
 import voteService from "../services/votes-service";
-import { createVoteType } from "protocols";
+import { DeleteVote, createVoteType } from "protocols";
 
 async function getVotes(req : Request, res: Response)  {
 
@@ -33,10 +33,22 @@ async function createVote(req : Request, res: Response)  {
     }
 }
 
+async function deleteVote(req : Request, res: Response)  {
+    const {reason, voteId} = req.body as DeleteVote
+    // os votos são publicos, la voce pode ver o id e quem votou
+    try {
+        await voteService.deleteVote(reason, voteId);
+        res.sendStatus(httpStatus.CREATED);
+    } catch (error) {
+        res.status(httpStatus.INTERNAL_SERVER_ERROR).send(error);
+    }
+}
+
 const voteController = {
     getVotes,
     getRanking,
-    createVote
+    createVote,
+    deleteVote
 }
 
 export default voteController;

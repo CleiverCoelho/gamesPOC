@@ -38,3 +38,8 @@ export type UpdateGameDescription = {
     newDescription: string,
     gameId: number
 }
+
+export type DeleteVote = {
+    reason: string
+    voteId: number
+}
