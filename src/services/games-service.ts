@@ -5,8 +5,14 @@ async function getGames() {
   return games;
 }
 
+async function updateGameDescription(newDescription: string, gameId: number) {
+    const games = await gameRepository.updateGameDescription(newDescription, gameId);
+    return games;
+  }
+
 const gameService = {
-    getGames
+    getGames,
+    updateGameDescription
 }
 
 export default gameService;

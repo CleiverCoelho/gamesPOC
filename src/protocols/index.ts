@@ -1,8 +1,10 @@
 export type User = {
     id: number;
     name: string;
-    age: string;
+    age: number;
 }
+
+export type CreateUser = Omit<User, 'id'>
 
 export type Game = {
     id: number;
@@ -30,4 +32,9 @@ export type RequestError = {
     errors: string[];
     name: string;
     message: string;
-  };
+};
+
+export type UpdateGameDescription = {
+    newDescription: string,
+    gameId: number
+}
