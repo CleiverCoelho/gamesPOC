@@ -5,6 +5,8 @@ async function getGames() {
   return games;
 }
 
+// sinta-se livre para editar a descricao do jogo, porém
+// seu voto pode ser acusado de clubismo e ser excluido
 async function updateGameDescription(newDescription: string, gameId: number) {
     const games = await gameRepository.updateGameDescription(newDescription, gameId);
     return games;
