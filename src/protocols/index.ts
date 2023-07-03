@@ -13,6 +13,21 @@ export type Game = {
 
 export type Vote = {
     id: number;
-    userName: number;
-    gameVote: number;
+    userId: number;
+    gameId: number;
 }
+
+export type Ranking = {
+    title: number;
+    totalVotes: number;
+}
+
+export type createVoteType = Omit<Vote, 'id'>;
+
+export type RequestError = {
+    status: number;
+    data: object | null;
+    errors: string[];
+    name: string;
+    message: string;
+  };
